@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Delete Entity</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f8fa;
+      padding: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    nav {
+      background: #333;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropbtn {
+      padding: 12px 20px;
+      color: white;
+      background-color: #333;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    .dropbtn:hover {
+      background-color: #444;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 200px;
+      z-index: 1;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+      margin-top: 5px;
+    }
+
+    .dropdown-content a {
+      color: #333;
+      padding: 10px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .show {
+      display: block;
+    }
+
+    form {
+      background: white;
+      max-width: 400px;
+      margin: auto;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label, select, input[type="number"], input[type="submit"] {
+      display: block;
+      width: 100%;
+      margin: 15px 0;
+      font-size: 16px;
+    }
+
+    input[type="submit"] {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #444;
+    }
+  </style>
+  <script>
+    function toggleDropdown(id) {
+      document.querySelectorAll('.dropdown-content').forEach(menu => {
+        if (menu.id === id) {
+          menu.classList.toggle("show");
+        } else {
+          menu.classList.remove("show");
+        }
+      });
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        document.querySelectorAll('.dropdown-content').forEach(menu => {
+          menu.classList.remove('show');
+        });
+      }
+    };
+
+    function confirmDelete(event) {
+      const entity = document.getElementById("entity").value;
+      const id = document.getElementById("id").value;
+      if (!confirm(`Are you sure you want to delete ${entity} with ID ${id}?`)) {
+        event.preventDefault();
+      }
+    }
+  </script>
+</head>
+<body>
+
+<h1>College Info Management Dashboard</h1>
+
+<nav>
+  <div class="dropdown">
+    <button class="dropbtn" onclick="toggleDropdown('add')">Add</button>
+    <div class="dropdown-content" id="add">
+      <a href="addStudent.html">Add Student</a>
+      <a href="addFaculty.html">Add Faculty</a>
+      <a href="addCourse.html">Add Course</a>
+      <a href="addDepartment.html">Add Department</a>
+      <a href="addEnrollment.html">Add Enrollment</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropbtn" onclick="toggleDropdown('view')">Search</button>
+    <div class="dropdown-content" id="view">
+      <a href="search.html">Search</a> 
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropbtn" onclick="toggleDropdown('update')">Update</button>
+    <div class="dropdown-content" id="update">
+      <a href="updateStudent.html">Update Student</a>
+      <a href="updateFaculty.html">Update Faculty</a>
+      <a href="updateCourse.html">Update Course</a>
+      <a href="updateDepartment.html">Update Department</a>
+      <a href="updateEnrollment.html">Update Enrollment</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropbtn" onclick="toggleDropdown('delete')">Delete</button>
+    <div class="dropdown-content" id="delete">
+      <a href="deleteEntity.html">Delete</a>
+    
+    </div>
+  </div>
+</nav>
+
+<h2>Delete Entity Record</h2>
+
+<form action="deleteEntity" method="post" onsubmit="confirmDelete(event)">
+  <label for="entity">Select Table:</label>
+  <select id="entity" name="entity" required>
+    <option value="department">Department</option>
+    <option value="faculty">Faculty</option>
+    <option value="course">Course</option>
+    <option value="student">Student</option>
+    <option value="enrollment">Enrollment</option>
+  </select>
+
+  <label for="id">Enter ID to Delete:</label>
+  <input type="number" id="id" name="id" required>
+
+  <input type="submit" value="Delete Record">
+</form>
+
+</body>
+</html>

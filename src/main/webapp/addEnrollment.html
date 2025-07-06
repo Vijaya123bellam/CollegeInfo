@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>College Info Management Dashboard</title>
+  <style>
+     body {
+      font-family: Arial, sans-serif;
+      background: #f4f8fa;
+      padding: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    nav {
+      background: #333;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropbtn {
+      padding: 12px 20px;
+      color: white;
+      background-color: #333;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    .dropbtn:hover {
+      background-color: #444;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 200px;
+      z-index: 1;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+      margin-top: 5px;
+    }
+
+    .dropdown-content a {
+      color: #333;
+      padding: 10px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .show {
+      display: block;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    nav {
+      background: #333;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropbtn {
+      padding: 12px 20px;
+      color: white;
+      background-color: #333;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    .dropbtn:hover {
+      background-color: #444;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 200px;
+      z-index: 1;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+      margin-top: 5px;
+    }
+
+    .dropdown-content a {
+      color: #333;
+      padding: 10px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .show {
+      display: block;
+    }
+
+    h2 {
+      text-align: center;
+      color: #444;
+      margin-top: 40px;
+    }
+
+    form {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 8px;
+      max-width: 500px;
+      margin: 20px auto;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    input[type="submit"] {
+      background-color: #333;
+      color: white;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #444;
+    }
+  </style>
+</head>
+<body>
+
+<h1>College Info Management Dashboard</h1>
+
+<nav>
+  <!-- Reuse your dropdown navigation HTML here -->
+   <!-- Add Menu -->
+  <div class="dropdown">
+    <button class="dropbtn" onclick="toggleDropdown('add')">Add</button>
+    <div class="dropdown-content" id="add">
+      <a href="addStudent.html">Add Student</a>
+      <a href="addFaculty.html">Add Faculty</a>
+      <a href="addCourse.html">Add Course</a>
+      <a href="addDepartment.html">Add Department</a>
+      <a href="addEnrollment.html">Add Enrollment</a>
+    </div>
+  </div>
+
+  <!-- View Menu -->
+  <div class="dropdown">
+    <button class="dropbtn" onclick="toggleDropdown('view')">Search</button>
+    <div class="dropdown-content" id="view">
+     <a href="search.html">Search</a>   
+    </div>
+  </div>
+
+  <!-- Update Menu -->
+  <div class="dropdown">
+    <button class="dropbtn" onclick="toggleDropdown('update')">Update</button>
+    <div class="dropdown-content" id="update">
+      <a href="updateStudent.html">Update Student</a>
+      <a href="updateFaculty.html">Update Faculty</a>
+      <a href="updateCourse.html">Update Course</a>
+      <a href="updateDepartment.html">Update Department</a>
+      <a href="updateEnrollment.html">Update Enrollment</a>
+    </div>
+  </div>
+
+  <!-- Delete Menu -->
+  <div class="dropdown">
+    <button class="dropbtn" onclick="toggleDropdown('delete')">Delete</button>
+    <div class="dropdown-content" id="delete">
+       <a href="deleteEntity.html">Delete</a>
+    </div>
+  </div>
+</nav>
+
+<h2>Add Enrollment</h2>
+
+<form action="addEnrollment" method="post">
+  <label for="enrollment_id">Enrollment ID:</label>
+  <input type="number" id="enrollment_id" name="enrollment_id" required>
+
+  <label for="student_id">Student ID:</label>
+  <input type="number" id="student_id" name="student_id" required>
+
+  <label for="course_id">Course ID:</label>
+  <input type="number" id="course_id" name="course_id" required>
+
+  <label for="semester">Semester:</label>
+  <input type="text" id="semester" name="semester" required>
+
+  <label for="grade">Grade:</label>
+  <input type="text" id="grade" name="grade">
+
+  <input type="submit" value="Add Enrollment">
+</form>
+
+<script>
+  function toggleDropdown(id) {
+    document.querySelectorAll('.dropdown-content').forEach(el => {
+      el.classList.toggle('show', el.id === id && !el.classList.contains('show'));
+    });
+  }
+
+  window.onclick = function (e) {
+    if (!e.target.matches('.dropbtn')) {
+      document.querySelectorAll('.dropdown-content').forEach(el => el.classList.remove('show'));
+    }
+  }
+</script>
+
+</body>
+</html>

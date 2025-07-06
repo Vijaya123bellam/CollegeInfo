@@ -1,0 +1,62 @@
+-- Reset the database
+DROP DATABASE IF EXISTS CollegeInfo;
+CREATE DATABASE CollegeInfo;
+USE CollegeInfo;
+
+-- Department table
+CREATE TABLE Department (
+    dept_id INT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+);
+
+-- Faculty table
+CREATE TABLE Faculty (
+    faculty_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    email VARCHAR(50),
+    dept_id INT,
+    FOREIGN KEY (dept_id) REFERENCES Department(dept_id)
+        ON DELETE CASCADE
+);
+
+-- Course table
+CREATE TABLE Course (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(100),
+    credits INT,
+    dept_id INT,
+    faculty_id INT,
+    FOREIGN KEY (dept_id) REFERENCES Department(dept_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (faculty_id) REFERENCES Faculty(faculty_id)
+        ON DELETE SET NULL
+);
+
+-- Student table
+CREATE TABLE Student (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    email VARCHAR(50),
+    dept_id INT,
+    FOREIGN KEY (dept_id) REFERENCES Department(dept_id)
+        ON DELETE CASCADE
+);
+
+-- Enrollment table
+CREATE TABLE Enrollment (
+    enrollment_id INT PRIMARY KEY,
+    student_id INT,
+    course_id INT,
+    semester VARCHAR(10),
+    grade VARCHAR(2),
+    FOREIGN KEY (student_id) REFERENCES Student(student_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (course_id) REFERENCES Course(course_id)
+        ON DELETE CASCADE
+);
+
+Select * from Student;
+Select * from department;
+Select * from faculty;
+Select * from course;
+select *from enrollment;

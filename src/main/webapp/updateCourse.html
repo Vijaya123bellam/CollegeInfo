@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Course</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f8fa;
+      padding: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    nav {
+      background: #333;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropbtn {
+      padding: 12px 20px;
+      color: white;
+      background-color: #333;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    .dropbtn:hover {
+      background-color: #444;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 200px;
+      z-index: 1;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+      margin-top: 5px;
+    }
+
+    .dropdown-content a {
+      color: #333;
+      padding: 10px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .show {
+      display: block;
+    }
+
+    form {
+      background: white;
+      padding: 20px;
+      max-width: 500px;
+      margin: 30px auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 4px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .update-field {
+      display: none;
+    }
+
+    input[type="submit"] {
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #444;
+    }
+  </style>
+
+  <script>
+    function toggleField(chkId, fieldId) {
+      const chk = document.getElementById(chkId);
+      const field = document.getElementById(fieldId);
+      field.style.display = chk.checked ? 'block' : 'none';
+    }
+
+    function toggleDropdown(id) {
+      document.querySelectorAll('.dropdown-content').forEach(menu => {
+        if (menu.id === id) {
+          menu.classList.toggle("show");
+        } else {
+          menu.classList.remove("show");
+        }
+      });
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        document.querySelectorAll('.dropdown-content').forEach(el => el.classList.remove('show'));
+      }
+    }
+  </script>
+</head>
+<body>
+
+<h1>College Info Management Dashboard</h1>
+
+<nav>
+  <!-- Add Menu -->
+  <div class="dropdown">
+    <button class="dropbtn" onclick="toggleDropdown('add')">Add</button>
+    <div class="dropdown-content" id="add">
+      <a href="addStudent.html">Add Student</a>
+      <a href="addFaculty.html">Add Faculty</a>
+      <a href="addCourse.html">Add Course</a>
+      <a href="addDepartment.html">Add Department</a>
+      <a href="addEnrollment.html">Add Enrollment</a>
+    </div>
+  </div>
+
+  <!-- View Menu -->
+  <div class="dropdown">
+    <button class="dropbtn" onclick="toggleDropdown('view')">Search</button>
+    <div class="dropdown-content" id="view">
+      <a href="search.html">Search</a>
+    </div>
+  </div>
+
+  <!-- Update Menu -->
+  <div class="dropdown">
+    <button class="dropbtn" onclick="toggleDropdown('update')">Update</button>
+    <div class="dropdown-content" id="update">
+      <a href="updateStudent.html">Update Student</a>
+      <a href="updateFaculty.html">Update Faculty</a>
+      <a href="updateCourse.html">Update Course</a>
+      <a href="updateDepartment.html">Update Department</a>
+      <a href="updateEnrollment.html">Update Enrollment</a>
+    </div>
+  </div>
+
+  <!-- Delete Menu -->
+  <div class="dropdown">
+    <button class="dropbtn" onclick="toggleDropdown('delete')">Delete</button>
+    <div class="dropdown-content" id="delete">
+      <a href="deleteEntity.html">Delete</a>
+    </div>
+  </div>
+</nav>
+
+<h2>Update Course Information</h2>
+
+<form action="updateCourse" method="post">
+  <label for="course_id">Course ID (required):</label>
+  <input type="number" id="course_id" name="course_id" required>
+
+  <label>Select fields to update:</label>
+  <input type="checkbox" id="chk_name" onclick="toggleField('chk_name', 'field_name')"> Course Name<br>
+  <input type="checkbox" id="chk_credits" onclick="toggleField('chk_credits', 'field_credits')"> Credits<br>
+  <input type="checkbox" id="chk_dept" onclick="toggleField('chk_dept', 'field_dept')"> Department ID<br>
+  <input type="checkbox" id="chk_faculty" onclick="toggleField('chk_faculty', 'field_faculty')"> Faculty ID<br>
+
+  <div id="field_name" class="update-field">
+    <label for="course_name">New Course Name:</label>
+    <input type="text" id="course_name" name="course_name">
+  </div>
+
+  <div id="field_credits" class="update-field">
+    <label for="credits">New Credits:</label>
+    <input type="number" id="credits" name="credits">
+  </div>
+
+  <div id="field_dept" class="update-field">
+    <label for="dept_id">New Department ID:</label>
+    <input type="number" id="dept_id" name="dept_id">
+  </div>
+
+  <div id="field_faculty" class="update-field">
+    <label for="faculty_id">New Faculty ID:</label>
+    <input type="number" id="faculty_id" name="faculty_id">
+  </div>
+
+  <input type="submit" value="Update Course">
+</form>
+
+</body>
+</html>
