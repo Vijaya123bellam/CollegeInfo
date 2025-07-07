@@ -69,3 +69,7 @@ Student
 Faculty
 Course
 Enrollment
+
+
+
+![Screenshot 2025-07-08 001204](https://github.com/user-attachments/assets/043f90e9-20ba-419a-b99d-7560d071a268)
